@@ -1,79 +1,387 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Caldifundi</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    
-    <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
-    <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
-    
-    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Caldifundi Fundição e Caldeiraria</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: Arial, sans-serif;
+    }
+
+    body {
+      background: #050505;
+      color: white;
+      line-height: 1.6;
+    }
+
+    header {
+      background: #111;
+      border-bottom: 2px solid #c40000;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: auto;
+    }
+
+    .top-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      flex-wrap: wrap;
+    }
+
+    .logo h1 {
+      font-size: 34px;
+      font-weight: bold;
+    }
+
+    .logo p {
+      color: #ff2b2b;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      font-size: 12px;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin-left: 18px;
+      transition: 0.3s;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #ff2b2b;
+    }
+
+    section {
+      padding: 80px 0;
+    }
+
+    .hero {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .hero h2 {
+      font-size: 58px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .hero p {
+      color: #cccccc;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 15px 30px;
+      border-radius: 12px;
+      text-decoration: none;
+      margin-right: 15px;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .btn-primary {
+      background: #d40000;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background: #ff0000;
+    }
+
+    .btn-secondary {
+      border: 1px solid #666;
+      color: white;
+    }
+
+    .btn-secondary:hover {
+      border-color: #ff0000;
+    }
+
+    .hero img,
+    .section-image {
+      width: 100%;
+      border-radius: 20px;
+      border: 1px solid #333;
+      box-shadow: 0 0 20px rgba(255,0,0,0.2);
+    }
+
+    h3.section-title {
+      font-size: 48px;
+      color: #ff2b2b;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+
+    .about-grid,
+    .structure-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 40px;
+      align-items: center;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 25px;
+      margin-top: 50px;
+    }
+
+    .card {
+      background: #111;
+      border: 1px solid #222;
+      padding: 30px;
+      border-radius: 20px;
+      transition: 0.3s;
+    }
+
+    .card:hover {
+      border-color: #ff0000;
+      transform: translateY(-5px);
+    }
+
+    .card h4 {
+      font-size: 28px;
+      margin-bottom: 15px;
+    }
+
+    .card p {
+      color: #cccccc;
+    }
+
+    ul {
+      list-style: none;
+      margin-top: 20px;
+    }
+
+    ul li {
+      margin-bottom: 12px;
+      color: #ddd;
+    }
+
+    .contact-box {
+      background: #111;
+      border: 1px solid #333;
+      border-radius: 25px;
+      padding: 50px;
+      text-align: center;
+    }
+
+    .contact-box p {
+      margin-bottom: 15px;
+      font-size: 20px;
+      color: #ccc;
+    }
+
+    footer {
+      border-top: 1px solid #222;
+      padding: 30px 0;
+      text-align: center;
+      color: #777;
+      background: #080808;
+    }
+
+    @media(max-width:768px) {
+      .hero h2 {
+        font-size: 40px;
+      }
+
+      nav {
+        margin-top: 15px;
+      }
+    }
+  </style>
 </head>
-<body class="bg-black text-white">
-    <div id="root"></div>
+<body>
 
-    <script type="text/babel">
-        // Não usamos 'import' aqui para evitar o erro de 'require'
-        const { useState, useEffect } = React;
+<header>
+  <div class="container top-bar">
+    <div class="logo">
+      <h1>Caldifundi</h1>
+      <p>Fundição e Caldeiraria</p>
+    </div>
 
-        function CaldifundiSite() {
-          return (
-            <div className="bg-black text-white min-h-screen font-sans">
-              {/* HERO */}
-              <section className="relative py-20 px-6 border-b border-red-700">
-                <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
-                  <div>
-                    <h1 className="text-5xl md:text-7xl font-extrabold mb-4">Caldifundi</h1>
-                    <h2 className="text-2xl md:text-3xl text-red-600 font-bold mb-6">Fundição e Caldeiraria</h2>
-                    <p className="text-gray-300 text-lg mb-8">Soluções completas para indústrias de alto desempenho.</p>
-                    <div className="flex flex-wrap gap-4">
-                      <a href="https://wa.me/5515997989311" target="_blank" className="bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-2xl font-semibold">Solicitar Orçamento</a>
-                      <a href="mailto:vendas@caldifundi.com.br" className="border border-gray-500 hover:border-red-600 px-6 py-3 rounded-2xl">Contato</a>
-                    </div>
-                  </div>
-                  <div className="flex justify-center">
-                    <img src="./logo-caldifundi.jpeg" alt="Logo" className="rounded-3xl shadow-2xl max-h-[400px] object-contain" />
-                  </div>
-                </div>
-              </section>
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#quem-somos">Quem Somos</a>
+      <a href="#servicos">Serviços</a>
+      <a href="#estruturas">Estruturas</a>
+      <a href="#contatos">Contatos</a>
+    </nav>
+  </div>
+</header>
 
-              {/* SERVIÇOS */}
-              <section className="py-20 px-6">
-                <div className="max-w-7xl mx-auto text-center">
-                  <h2 className="text-4xl font-bold mb-12 text-red-600">Nossos Serviços</h2>
-                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
-                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
-                      <h3 className="text-2xl font-bold mb-4">Fundição</h3>
-                      <p className="text-gray-400">Ferro fundido cinzento e nodular de 0,100 até 1.500 kg.</p>
-                    </div>
-                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
-                      <h3 className="text-2xl font-bold mb-4">Caldeiraria</h3>
-                      <p className="text-gray-400">Leve, média e pesada em aço carbono, inox e alumínio.</p>
-                    </div>
-                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
-                      <h3 className="text-2xl font-bold mb-4">Corte e Dobra</h3>
-                      <p className="text-gray-400">Corte laser, plasma, oxicorte e dobra.</p>
-                    </div>
-                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
-                      <h3 className="text-2xl font-bold mb-4">Estruturas</h3>
-                      <p className="text-gray-400">Estruturas metálicas para aplicações industriais.</p>
-                    </div>
-                  </div>
-                </div>
-              </section>
+<section id="home">
+  <div class="container hero">
+    <div>
+      <h2>Soluções completas para indústrias de alto desempenho</h2>
 
-              <footer className="border-t border-zinc-800 py-8 text-center text-gray-500">
-                © 2026 Caldifundi Fundição e Caldeiraria — Qualidade que Sustenta
-              </footer>
-            </div>
-          );
-        }
+      <p>
+        Especialistas em fundição, caldeiraria, corte, dobra e estruturas metálicas.
+      </p>
 
-        // Renderização final
-        const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(<CaldifundiSite />);
-    </script>
+      <a href="https://wa.me/5515997989311" class="btn btn-primary">
+        Solicitar Orçamento
+      </a>
+
+      <a href="mailto:vendas@caldifundi.com.br" class="btn btn-secondary">
+        Entrar em Contato
+      </a>
+    </div>
+
+    <div>
+      <img src="WhatsApp Image 2026-05-16 at 12.35.13(1).jpeg" alt="Caldifundi" />
+    </div>
+  </div>
+</section>
+
+<section id="quem-somos">
+  <div class="container">
+    <h3 class="section-title">Quem Somos</h3>
+
+    <div class="about-grid">
+      <img class="section-image" src="WhatsApp Image 2026-05-16 at 12.35.13(1).jpeg" alt="Empresa" />
+
+      <div>
+        <p>
+          Formada por profissionais com mais de 27 anos de experiência em fundição e caldeiraria, a Caldifundi oferece soluções seguindo as especificações determinadas pelas normas ABNT, DIN, ASTM e SAE.
+        </p>
+
+        <ul>
+          <li>✔ Experiência e qualidade</li>
+          <li>✔ Tecnologia e precisão</li>
+          <li>✔ Compromisso e segurança</li>
+          <li>✔ Soluções industriais completas</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="servicos">
+  <div class="container">
+    <h3 class="section-title">Serviços</h3>
+
+    <div class="cards">
+      <div class="card">
+        <h4>Fundição</h4>
+        <p>
+          Fundição de ferro fundido cinzento e nodular de 0,100 kg até 1.500 kg.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Caldeiraria</h4>
+        <p>
+          Caldeiraria leve, média e pesada em aço carbono, inox e alumínio.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Corte e Dobra</h4>
+        <p>
+          Corte laser, plasma, oxicorte, dobra CNC e calandra.
+        </p>
+      </div>
+
+      <div class="card">
+        <h4>Montagem</h4>
+        <p>
+          Estruturas metálicas e soluções industriais completas.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="estruturas">
+  <div class="container structure-grid">
+    <div>
+      <h3 class="section-title" style="text-align:left;">
+        Estruturas Metálicas
+      </h3>
+
+      <p>
+        Desenvolvemos e fabricamos estruturas metálicas para os mais diversos tipos de projetos e aplicações industriais.
+      </p>
+
+      <ul>
+        <li>✔ Estruturas industriais</li>
+        <li>✔ Plataformas e passarelas</li>
+        <li>✔ Mezaninos</li>
+        <li>✔ Suportes e bases</li>
+        <li>✔ Projetos especiais</li>
+      </ul>
+    </div>
+
+    <img class="section-image" src="WhatsApp Image 2026-05-16 at 12.35.13(1).jpeg" alt="Estruturas" />
+  </div>
+</section>
+
+<section id="contatos">
+  <div class="container">
+    <h3 class="section-title">Contatos</h3>
+
+    <div class="contact-box">
+      <img
+        src="WhatsApp Image 2026-05-16 at 12.35.13(1).jpeg"
+        alt="Logo"
+        style="max-width:400px; width:100%; margin-bottom:30px; border-radius:20px;"
+      />
+
+      <p><strong>Atendimento:</strong> Segunda a sexta-feira</p>
+      <p><strong>Horário:</strong> 07h00 às 17h00</p>
+      <p><strong>Email:</strong> vendas@caldifundi.com.br</p>
+      <p><strong>WhatsApp:</strong> (15) 99798-9311</p>
+      <p><strong>Site:</strong> www.caldifundi.com.br</p>
+
+      <form action="https://formsubmit.co/caldifundi@caldifundi.com.br" method="POST" style="margin-top:40px; text-align:left; max-width:700px; margin-left:auto; margin-right:auto;">
+        <div style="display:grid; gap:20px;">
+          <input type="text" placeholder="Nome" required style="padding:15px; border-radius:12px; border:1px solid #333; background:#0d0d0d; color:white; font-size:16px;">
+
+          <input type="tel" placeholder="Telefone" required style="padding:15px; border-radius:12px; border:1px solid #333; background:#0d0d0d; color:white; font-size:16px;">
+
+          <input type="email" placeholder="E-mail" required style="padding:15px; border-radius:12px; border:1px solid #333; background:#0d0d0d; color:white; font-size:16px;">
+
+          <input type="text" placeholder="Empresa" style="padding:15px; border-radius:12px; border:1px solid #333; background:#0d0d0d; color:white; font-size:16px;">
+
+          <textarea placeholder="Assunto" rows="5" required style="padding:15px; border-radius:12px; border:1px solid #333; background:#0d0d0d; color:white; font-size:16px;"></textarea>
+
+          <input type="hidden" name="_subject" value="Novo contato recebido pelo site Caldifundi">
+          <input type="hidden" name="_captcha" value="false">
+          <input type="hidden" name="_template" value="table">
+
+          <button type="submit" style="background:#d40000; color:white; border:none; padding:16px; border-radius:12px; font-size:18px; font-weight:bold; cursor:pointer;">
+            Enviar Solicitação
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 Caldifundi Fundição e Caldeiraria — Qualidade que Sustenta</p>
+</footer>
+
 </body>
 </html>
