@@ -4,11 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Caldifundi</title>
- <script src="https://cdn.tailwindcss.com"></script>
-<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
 <body class="bg-black">
     <div id="root"></div>
-    <script type="module" src="./main.jsx"></script>
+
+    <script type="text/babel" data-type="module">
+        import React from 'https://esm.sh/react'
+        import ReactDOM from 'https://esm.sh/react-dom/client'
+        
+        // Importando o seu componente do site
+        // Verifique se o nome do arquivo no GitHub está exatamente assim
+        import CaldifundiSite from './site_caldifundi_react.jsx'
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(
+            <React.StrictMode>
+                <CaldifundiSite />
+            </React.StrictMode>
+        );
+    </script>
 </body>
 </html>
