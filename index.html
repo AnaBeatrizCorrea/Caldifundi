@@ -7,23 +7,76 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
 </head>
-<body class="bg-black">
+<body class="bg-black text-white">
     <div id="root"></div>
 
-    <script type="text/babel" data-type="module">
+    <script type="text/babel">
         import React from 'https://esm.sh/react'
         import ReactDOM from 'https://esm.sh/react-dom/client'
-        
-        // Importando o seu componente do site
-        // Verifique se o nome do arquivo no GitHub está exatamente assim
-        import CaldifundiSite from './site_caldifundi_react.jsx'
+
+        // O seu componente inteiro aqui dentro evita o erro de importar arquivos .jsx
+        function CaldifundiSite() {
+          return (
+            <div className="bg-black text-white min-h-screen font-sans">
+              <section className="relative py-20 px-6 border-b border-red-700">
+                <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+                  <div>
+                    <h1 className="text-5xl md:text-7xl font-extrabold mb-4">Caldifundi</h1>
+                    <h2 className="text-2xl md:text-3xl text-red-600 font-bold mb-6">Fundição e Caldeiraria</h2>
+                    <p className="text-gray-300 text-lg mb-8">Soluções completas para indústrias de alto desempenho.</p>
+                    <div className="flex flex-wrap gap-4">
+                      <a href="https://wa.me/5515997989311" className="bg-red-600 hover:bg-red-700 transition px-6 py-3 rounded-2xl font-semibold">Solicitar Orçamento</a>
+                      <a href="mailto:vendas@caldifundi.com.br" className="border border-gray-500 hover:border-red-600 px-6 py-3 rounded-2xl">Contato</a>
+                    </div>
+                  </div>
+                  <div className="flex justify-center">
+                    <img src="./logo-caldifundi.jpeg" alt="Logo" className="rounded-3xl shadow-2xl max-h-[500px] object-contain" />
+                  </div>
+                </div>
+              </section>
+
+              <section className="py-20 px-6 bg-zinc-950">
+                <div className="max-w-6xl mx-auto">
+                  <h2 className="text-4xl font-bold mb-8 text-red-600">Quem Somos</h2>
+                  <p className="text-gray-300 text-lg leading-relaxed">
+                    Formada por profissionais com mais de 27 anos de experiência, a Caldifundi oferece soluções seguindo normas ABNT, DIN, ASTM e SAE.
+                  </p>
+                </div>
+              </section>
+
+              <section className="py-20 px-6">
+                <div className="max-w-7xl mx-auto text-center">
+                  <h2 className="text-4xl font-bold mb-12 text-red-600">Nossos Serviços</h2>
+                  <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 text-left">
+                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
+                      <h3 className="text-2xl font-bold mb-4">Fundição</h3>
+                      <p className="text-gray-400">Ferro fundido cinzento e nodular de 0,100 até 1.500 kg.</p>
+                    </div>
+                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
+                      <h3 className="text-2xl font-bold mb-4">Caldeiraria</h3>
+                      <p className="text-gray-400">Leve, média e pesada em aço carbono, inox e alumínio.</p>
+                    </div>
+                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
+                      <h3 className="text-2xl font-bold mb-4">Corte e Dobra</h3>
+                      <p className="text-gray-400">Corte laser, plasma, oxicorte e dobra.</p>
+                    </div>
+                    <div className="bg-zinc-900 p-6 rounded-3xl border border-zinc-800">
+                      <h3 className="text-2xl font-bold mb-4">Estruturas</h3>
+                      <p className="text-gray-400">Estruturas metálicas em geral para indústrias.</p>
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <footer className="border-t border-zinc-800 py-8 text-center text-gray-500">
+                © 2026 Caldifundi Fundição e Caldeiraria
+              </footer>
+            </div>
+          );
+        }
 
         const root = ReactDOM.createRoot(document.getElementById('root'));
-        root.render(
-            <React.StrictMode>
-                <CaldifundiSite />
-            </React.StrictMode>
-        );
+        root.render(<CaldifundiSite />);
     </script>
 </body>
 </html>
