@@ -19,7 +19,7 @@ jobs:
           server: ftp.caldifundi.com.br
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
-          server-dir: /home/caldifundi/
+          local-dir: /home/caldifundi
+          server-dir: /home/caldifundi
           state-name: .ftp-deploy-sync-state.json
           dangerous-clean-slate: false
